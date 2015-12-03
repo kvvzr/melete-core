@@ -139,3 +139,6 @@ class Scale:
             root -= 1
         octave = int(match.group('octave')) + 2
         return Scale(root + octave * 12)
+
+def note_range(low, high):
+    return range(Scale.from_name('C4').note, Scale.from_name('A5').note)

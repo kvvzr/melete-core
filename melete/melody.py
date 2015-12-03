@@ -127,3 +127,10 @@ def concat_midi(head, tail):
             midi.tracks.append(track)
 
     return midi
+
+def create(rhythm, beats, chord_prog, pitch_range, skip_prob, bpm):
+    with mido.MidiFile(ticks_per_beat=48, charset='utf-8') as midi:
+        for beat in beats:
+            composer = Composer(rhythm, beat, chord_prog, pitch_range, skip_prob, bpm)
+            midi = concat_midi(midi, composer.compose())
+    return midi

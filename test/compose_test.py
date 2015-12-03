@@ -3,8 +3,6 @@
 import os, sys, string, random
 sys.path.append(os.getcwd())
 
-from datetime import datetime as dt
-import mido
 import sure
 import melete.lyrics as Lyrics
 import melete.rhythm as Rhythm
@@ -27,12 +25,9 @@ gsus4 = Chord.Chord.from_name('Gsus4')
 gsus4.inversion(1)
 prog = Chord.ChordProg(48, 4, [(c, 0), (f, 192), (gsus4, 384), (c, 576)])
 
-note_range = range(Chord.Scale.from_name('C4').note, Chord.Scale.from_name('A5').note)
+note_range = Chord.note_range('C4', 'A5')
 
-with mido.MidiFile(ticks_per_beat=48, charset='utf-8') as midi:
-    for beat in beats:
-        composer = Melody.Composer(ts, beat, prog, note_range, 0.5, 180)
-        midi = Melody.concat_midi(midi, composer.compose())
+midi = Melody.create(ts, beats, prog, note_range, 0.5, 180)
 savepath = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)]) + '.mid'
 
 if not os.path.exists('log'):
