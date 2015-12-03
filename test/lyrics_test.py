@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os, sys
-sys.path.append(os.getcwd())
-
 import sure
 import melete.lyrics as Lyrics
 import melete.rhythm as Rhythm

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os, sys, string, random
-sys.path.append(os.getcwd())
+import os, string, random
 
 import sure
 import melete.lyrics as Lyrics
