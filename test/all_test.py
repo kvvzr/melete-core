@@ -5,4 +5,4 @@ import rhythm_test
 import chord_test
 import compose_test
 
-print 'Success'
+print('Success')
