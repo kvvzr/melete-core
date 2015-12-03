@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os, re, unicodedata
+import inspect, os, re, unicodedata
 from operator import add
 import MeCab
 import melete.rhythm as Rhythm
-import inspect
 
 kana = u'\u30a2\u30a4\u30a6\u30a8\u30aa-\u30e2\u30e4\u30e6\u30e8-\u30ed\u30ef-\u30f4\u30fc' # \u30c3は1モーラとカウントされるのでこちら
 small_kana = u'\u30a1\u30a3\u30a5\u30a7\u30a7\u30e3\u30e5\u30e7\u30ee'

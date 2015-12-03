@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import re
-from flask import jsonify
 
 roots = 'C-D-EF-G-A-B'
 chord_pattern = re.compile(u'(?P<root>[CDEFGAB])(?P<accidental>[♯♭])?(?P<type>\w+)?')
