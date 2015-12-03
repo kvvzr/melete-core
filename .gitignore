@@ -110,3 +110,5 @@ docs/_build/
 # PyBuilder
 target/
 
+# Other
+log/
