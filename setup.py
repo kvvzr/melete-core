@@ -5,5 +5,5 @@ setup(
     version='0.0.1',
     install_requires=['mecab-python', 'mido'],
     packages=['melete'],
-    package_data={'melete': ['melete/dicrc']}
+    package_data={'melete': ['dicrc']}
 )
