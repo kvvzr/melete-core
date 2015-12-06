@@ -141,4 +141,4 @@ class Scale:
         return Scale(root + octave * 12)
 
 def note_range(low, high):
-    return range(Scale.from_name('C4').note, Scale.from_name('A5').note)
+    return range(Scale.from_name(low).note, Scale.from_name(high).note)
