@@ -3,7 +3,7 @@ import mido
 import melete.accom as Accom
 
 class Composer:
-    def __init__(self, rhythm, beats, chord_prog, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
+    def __init__(self, rhythm, beats, chord_prog, pitch_range, accoms={}, skip_prob=0.5, bpm=180):
         self.rhythm = rhythm
         self.beats = beats
         self.chords = chord_prog
@@ -31,7 +31,7 @@ class Composer:
                 elapsed = time + note_off
             midi.tracks.append(melody)
 
-            accom_track = Accom.create_midi_track(self.rhythm, self.beats.time, self.chords, [])
+            accom_track = Accom.create_midi_track(self.rhythm, self.beats.time, self.chords, self.accoms)
             midi.tracks.append(accom_track)
         return midi
 
@@ -122,7 +122,7 @@ def concat_midi(head, tail):
 
     return midi
 
-def create(rhythm, beats, chord_prog, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
+def create(rhythm, beats, chord_prog, pitch_range, accoms={}, skip_prob=0.5, bpm=180):
     with mido.MidiFile(ticks_per_beat=48, charset='utf-8') as midi:
         for beat in beats:
             composer = Composer(rhythm, beat, chord_prog, pitch_range, accoms, skip_prob, bpm)
