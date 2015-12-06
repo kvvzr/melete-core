@@ -2,11 +2,12 @@ import re
 import mido
 
 class Composer:
-    def __init__(self, rhythm, beats, chord_prog, pitch_range, skip_prob, bpm):
+    def __init__(self, rhythm, beats, chord_prog, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
         self.rhythm = rhythm
         self.beats = beats
         self.chords = chord_prog
         self.pitch_range = pitch_range
+        self.accoms = accoms
         self.skip_prob = skip_prob
         self.bpm = bpm
 
@@ -128,9 +129,9 @@ def concat_midi(head, tail):
 
     return midi
 
-def create(rhythm, beats, chord_prog, pitch_range, skip_prob, bpm):
+def create(rhythm, beats, chord_prog, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
     with mido.MidiFile(ticks_per_beat=48, charset='utf-8') as midi:
         for beat in beats:
-            composer = Composer(rhythm, beat, chord_prog, pitch_range, skip_prob, bpm)
+            composer = Composer(rhythm, beat, chord_prog, pitch_range, accoms, skip_prob, bpm)
             midi = concat_midi(midi, composer.compose())
     return midi

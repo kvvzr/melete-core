@@ -26,7 +26,7 @@ prog = Chord.ChordProg(48, 4, [(c, 0), (f, 192), (gsus4, 384), (c, 576)])
 
 note_range = Chord.note_range('C4', 'A5')
 
-midi = Melody.create(ts, beats, prog, note_range, 0.5, 180)
+midi = Melody.create(ts, beats, prog, note_range)
 savepath = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)]) + '.mid'
 
 if not os.path.exists('log'):
