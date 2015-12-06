@@ -1,5 +1,6 @@
 import re
 import mido
+import melete.accom as Accom
 
 class Composer:
     def __init__(self, rhythm, beats, chord_prog, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
@@ -30,16 +31,8 @@ class Composer:
                 elapsed = time + note_off
             midi.tracks.append(melody)
 
-            accom = mido.MidiTrack()
-            for t in range(self.beats.time):
-                for i, s in enumerate(self.chords.current(t).sounds):
-                    accom.append(mido.Message('note_on', note=s + 12 * 5, time=0))
-                for i, s in enumerate(self.chords.current(t).sounds):
-                    offset = 0
-                    if i == 0:
-                        offset = int(48 * 4 * self.rhythm.simple)
-                    accom.append(mido.Message('note_off', note=s + 12 * 5, time=offset))
-            midi.tracks.append(accom)
+            accom_track = Accom.create_midi_track(self.rhythm, self.beats.time, self.chords, [])
+            midi.tracks.append(accom_track)
         return midi
 
     def create_melody(self):
