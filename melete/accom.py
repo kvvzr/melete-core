@@ -16,7 +16,7 @@ def create_midi_track(rhythm, beat_num, chord_prog, pattern):
                 offset = 0
                 if i == 0:
                     offset = int(48 * 4 * rhythm.simple * (at - prev))
-                accom.append(mido.Message('note_on', note=sounds[a % len(sounds)] + 12 * 5, time=offset))
+                accom.append(mido.Message('note_on', note=sounds[a % len(sounds)] + 12 * 5, time=offset, velocity=32))
 
             for i, a in enumerate(pattern[at]['notes']):
                 offset = 0

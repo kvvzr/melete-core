@@ -122,9 +122,12 @@ def concat_midi(head, tail):
 
     return midi
 
-def create(rhythm, beats, chord_prog, pitch_range, accoms={}, skip_prob=0.5, bpm=180):
+def create(rhythm, beats, chord_progs, pitch_range, accoms=[], skip_prob=0.5, bpm=180):
     with mido.MidiFile(ticks_per_beat=48, charset='utf-8') as midi:
-        for beat in beats:
-            composer = Composer(rhythm, beat, chord_prog, pitch_range, accoms, skip_prob, bpm)
+        for i in range(len(beats)):
+            accom = {}
+            if i < len(accoms):
+                accom = accoms[i]
+            composer = Composer(rhythm, beats[i], chord_progs[i], pitch_range, accom, skip_prob, bpm)
             midi = concat_midi(midi, composer.compose())
     return midi

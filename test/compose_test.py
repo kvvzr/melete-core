@@ -26,14 +26,14 @@ prog = Chord.ChordProg(48, 4, [(c, 0), (f, 192), (gsus4, 384), (c, 576)])
 
 note_range = Chord.note_range('C4', 'A5')
 
-pattern = {
+patterns = [{
     0.125: {'length': 0.125, 'notes': [0]},
     0.25: {'length': 0.25, 'notes': [1, 2]},
     0.5: {'length': 0.25, 'notes': [2]},
     0.75: {'length': 0.25, 'notes': [0, 100]},
-}
+}]
 
-midi = Melody.create(ts, beats, prog, note_range, pattern)
+midi = Melody.create(ts, beats, prog, note_range, patterns)
 savepath = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)]) + '.mid'
 
 if not os.path.exists('log'):
